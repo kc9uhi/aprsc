@@ -10,9 +10,9 @@ systems.
 aprsc has been built and tested on:
 
 * Ubuntu LTS (18.04, 20.04, 22.04): x86_64
-* Debian 9.0, "stretch": i386 and x86_64
 * Debian 10.0, "buster": i386 and x86_64
 * Debian 11.0, "bullseye": i386 and x86_64
+* Debian 12.0, "bookworm": x86_64
 * Mac OS X 10.8 (Snow Leopard): x86
 * FreeBSD 8.2 and 9.0 on amd64, 7.2 on i386
 * Solaris 11 (SunOS 5.11 11.0 i86pc i386)
@@ -45,6 +45,9 @@ On Linux, aprsc can utilize POSIX capabilities to enable binding low
 (< 1024) ports while not running as root. This requires the libcap
 library, and compiling against it requires it's development headers
 (package libcap-dev on Debian/Ubuntu).
+
+For build a .deb package on Debian 11 debhelper, libssl-dev and libsctp-dev
+are also currently required and can be installed with apt.
 
 
 Building a .deb package
