@@ -20,8 +20,7 @@ configure-stamp:
 		CC="gcc" \
 		CFLAGS="${CFLAGS}" \
 		AFLAGS="${CFLAGS} --noexecstack" \
-		LDFLAGS="${CFLAGS} -z noexecstack" \
-		--with-openssl
+		LDFLAGS="${CFLAGS} -z noexecstack"
 	touch configure-stamp
 
 
@@ -31,7 +30,7 @@ build-stamp: configure-stamp
 	dh_testdir
 
 	# Add here commands to compile the package.
-	$(MAKE)
+	$(MAKE) -j3
 
 	touch $@
 
@@ -48,7 +47,7 @@ clean:
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean -k 
+	dh_prep
 	dh_installdirs
 
 	# Add here commands to install the package into debian/apsc.
@@ -70,15 +69,11 @@ binary-arch: build install
 #	dh_installmenu
 #	dh_installdebconf
 	dh_installlogrotate
-#	dh_installemacsen
 #	dh_installpam
 #	dh_installmime
 #	dh_python
-	dh_installinit
-	# this will work on ubuntu 18.04: dh_installsystemd
-	# but in the mean time:
-	cp -p $(CURDIR)/debian/aprsc@.service $(CURDIR)/debian/aprsc/lib/systemd/system/aprsc@.service
-	cp -p $(CURDIR)/debian/aprsc-chroot.service $(CURDIR)/debian/aprsc/lib/systemd/system/aprsc-chroot.service
+	dh_installsystemd
+	dh_installsystemd --name=aprsc-chroot
 #	dh_installcron
 #	dh_installinfo
 	dh_installman
@@ -89,6 +84,8 @@ binary-arch: build install
 #	dh_perl
 #	dh_makeshlibs
 	dh_installdeb
+	# Since compat 12, dh_installdeb insists conffiles may only live in /etc.
+	cat debian/conffiles >> $(CURDIR)/debian/aprsc/DEBIAN/conffiles
 	dh_shlibdeps
 	dh_gencontrol
 	dh_md5sums
