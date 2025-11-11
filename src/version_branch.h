@@ -18,7 +18,7 @@
  *	Thanks!
  */
 
-#define VERSION_BRANCH ""
+#define VERSION_BRANCH "-KC9UHI-1"
 
 #endif
 
