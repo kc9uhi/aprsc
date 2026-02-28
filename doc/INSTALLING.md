@@ -4,11 +4,11 @@ Installing aprsc
 
 aprsc is "officially" "supported" on the following platforms:
 
-* Debian stable (12.0, "bookworm"): x86_64
-* Debian oldstable (11.0, "bullseye"): i386, x86_64
-* Debian oldoldstable (10.0, "buster"): i386, x86_64
+* Debian stable (13.0, "trixie"): x86_64
+* Debian oldstable (12.0, "bookworm"): x86_64
+* Debian oldoldstable (11.0, "bullseye"): i386, x86_64
 * Ubuntu LTS (20.04, 22.04, 24.04): x86_64
-* Fedora Core 39 and 40: x86_64
+* Fedora Core 42 and 43: x86_64
 
 The i386 builds actually require an i686 (Pentium 2 class) CPU or
 anything newer than that.
@@ -53,9 +53,9 @@ versions and their codenames:
 * Ubuntu 24.04 LTS: noble
 * Ubuntu 22.04 LTS: jammy
 * Ubuntu 20.04 LTS: focal
+* Debian 13.0: trixie
 * Debian 12.0: bookworm
 * Debian 11.0: bullseye
-* Debian 10.0: buster
 
 Other versions are currently not supported.
 
@@ -79,7 +79,8 @@ Next, add the gpg key used to sign the packages by running the following
 commands at your command prompt.  This will enable strong authentication of
 the aprsc packages - apt-get will cryptographically validate them.
 
-On Ubuntu 24.04 and later, use the new key identifier (rsa4096 key):
+On Ubuntu 24.04 and later, and Debian 13.0 trixie and later, use the new key
+identifier (rsa4096 key):
 
     gpg --keyserver keyserver.ubuntu.com --recv D43AD4708A2DA1139F250B3294E40E5320D8AE3C
     sudo gpg --export D43AD4708A2DA1139F250B3294E40E5320D8AE3C > /etc/apt/trusted.gpg.d/aprsc.key.gpg
